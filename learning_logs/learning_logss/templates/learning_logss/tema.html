@@ -1,0 +1,26 @@
+{% extends "learning_logss/base.html" %}
+
+{% block page_header %}
+    <h3>{{tema}} </h3>
+{% endblock page_header %}
+
+{% block content %}
+    <p>
+        <a href="{% url 'learning_logss:nueva_entrada' tema.id%}">Agregar Nueva Entrada</a>
+    </p>
+    {% for entrada in entradas %}
+        <div class="card mb-3 w-100">
+            <h4 class="card-header">
+                {{entrada.date_add|date:'M d, YH:i'}}
+                <small><a href="{% url 'learning_logss:editar_entrada' entrada.id %}"> Editar entrada</a></small>
+            </h4>
+            <div class=card-body>
+                <p class=card-text>{{entrada.texto|linebreaks}}
+                </p>
+            </div>
+        </div>
+        {% empty %}
+            <p>Todavia no hay entradas para este tema</p>
+    {% endfor %}
+
+{% endblock content %}

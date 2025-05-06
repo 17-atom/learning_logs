@@ -1,0 +1,12 @@
+{% extends "learning_logss/base.html" %}
+
+{% block content %}
+    <p><a href="{% url "learning_logss:tema" tema.id %}"> {{tema}}</a></p>
+    <p>Editar entrada</p>
+
+    <form action="{% url 'learning_logss:editar_entrada' entrada.id %}" method='post'>
+        {% csrf_token %}
+        {{formulario.as_p}}
+        <button name="enviar"> Guardar cambios </button>
+    </form> 
+{% endblock  %}

@@ -1,0 +1,14 @@
+{% extends "learning_logss/base.html" %}
+
+{% block page_header %}
+  <div class="jumbotron">
+    <h1 class="display-3">Haga un seguimiento de su aprendizaje.</h1>
+    <p class="lead">
+      Haga su propio Registro de aprendizaje y mantenga una lista de los temas sobre los que está aprendiendo.
+      Siempre que aprenda algo nuevo sobre un tema, haga una entrada que resuma lo que ha aprendido.
+    </p>
+    <a class="btn btn-lg btn-primary" href="{% url 'usuarios:registrar' %}" role="button">
+      Registrar &raquo;
+    </a>
+  </div>
+{% endblock page_header %}

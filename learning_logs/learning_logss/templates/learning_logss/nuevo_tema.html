@@ -1,0 +1,12 @@
+{% extends "learning_logss/base.html" %}
+
+{% block content %}
+    <p>Agregar un nuevo tema:</p>
+
+    <form action="{% url 'learning_logss:nuevo_tema' %}" method='post'>
+        {% csrf_token %}
+        {{formulario.as_p}}
+        <button name="enviar"> Añadir tema</button>
+    </form>   
+
+{% endblock  %}

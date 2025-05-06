@@ -1,0 +1,18 @@
+{% extends "learning_logss/base.html" %}
+
+{% block page_header %}
+    <h1 class="mt-4">Nueva entrada</h1>
+{% endblock page_header %}
+
+{% block content %}
+    <p> <a href=" {% url 'learning_logss:tema' tema.id %} "> {{tema}}</a> </p>
+    <p>Agregar nuevo tema:</p>
+
+    <form action="{% url 'learning_logss:nueva_entrada' tema.id %}" method='post'>
+        {% csrf_token %}
+        {{formulario.as_p}}
+        <button name="submit"> Añadir Entrada</button>
+    </form>   
+{% endblock content %}
+
+
