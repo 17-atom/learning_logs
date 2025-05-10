@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: learning_log
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn learning_log.wsgi:application
+    staticPublishPath: staticfiles
