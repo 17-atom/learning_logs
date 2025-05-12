@@ -3,7 +3,7 @@ services:
     name: learning_logs
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn learning_logs.wsgi:application
+    startCommand: gunicorn LEARNING_LOG.wsgi:application
     staticPublishPath: staticfiles
     envVars:
       - key: DJANGO_SETTINGS_MODULE
