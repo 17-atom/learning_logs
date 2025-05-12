@@ -5,3 +5,12 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn learning_logs.wsgi:application
     staticPublishPath: staticfiles
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: learning_logs.settings
+      - key: PYTHON_VERSION
+        value: 3.13.2
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
