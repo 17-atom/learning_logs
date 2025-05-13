@@ -1,16 +1,22 @@
+databases:
+  - name: learninglogsdb
+    plan: free
+    databaseName: learninglogs
+    user: lerninglogs
+
 services:
   - type: web
-    name: learning_logs
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn  learning_logss.wsgi:application
-    staticPublishPath: staticfiles
+    plan: free
+    name: learninglogs
+    runtime: python-3.13.2
+    buildCommand: './build.sh'
+    startCommand: 'python -m gunicorn learning_logs.asgi:application -k uvicorn.workers.UvicornWorker' 
     envVars:
-      - key: DJANGO_SETTINGS_MODULE
-        value: learning_logs.settings
-      - key: PYTHON_VERSION
-        value: 3.13.2
+      - key: DATABASE_URL
+        fromDatabase:
+          name: learninglogsdb
+          property: connectionString
       - key: SECRET_KEY
         generateValue: true
-      - key: DEBUG
-        value: "False"
+      - key: WEB_CONCURRENCY
+        value: 4
