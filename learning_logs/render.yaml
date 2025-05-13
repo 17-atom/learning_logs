@@ -2,7 +2,7 @@ databases:
   - name: learninglogsdb
     plan: free
     databaseName: learninglogs
-    user: lerninglogs
+    user: learninglogs
 
 services:
   - type: web
