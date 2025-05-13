@@ -1,22 +1,18 @@
-databases:
-  - name: learninglogsdb
-    plan: free
-    databaseName: learninglogs
-    user: learninglogs
-
+# Exported from Render on 2025-05-13T05:20:45Z
 services:
-  - type: web
-    plan: free
-    name: learninglogs
-    runtime: python
-    buildCommand: './build.sh'
-    startCommand: 'python -m gunicorn learning_logs.asgi:application -k uvicorn.workers.UvicornWorker' 
-    envVars:
-      - key: DATABASE_URL
-        fromDatabase:
-          name: learninglogsdb
-          property: connectionString
-      - key: SECRET_KEY
-        generateValue: true
-      - key: WEB_CONCURRENCY
-        value: 4
+- type: web
+  name: learninglogs
+  runtime: python
+  repo: https://github.com/17-atom/learning_logs
+  plan: free
+  envVars:
+  - key: WEB_CONCURRENCY
+    sync: false
+  - key: SECRET_KEY
+    sync: false
+  - key: DATABASE_URL
+    sync: false
+  region: oregon
+  buildCommand: ./build.sh
+  startCommand: python -m gunicorn learning_logs.asgi:application -k uvicorn.workers.UvicornWorker
+version: "1"
