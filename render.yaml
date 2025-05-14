@@ -10,17 +10,15 @@ services:
     name: learninglogs
     runtime: python
     buildCommand: './build.sh'
-    startCommand: 'python -m gunicorn learning_logs.asgi:application -k uvicorn.workers.UvicornWorker' 
+    startCommand: gunicorn learning_logs.wsgi:application
     envVars:
       - key: DATABASE_URL
         fromDatabase:
           name: learninglogsdb
           property: connectionString
       - key: SECRET_KEY
-        generateValue: true
+        generateValue: True
       - key: WEB_CONCURRENCY
         value: 4
       - key: DEBUG
-        value: False
-      - key: ALLOWED_HOSTS
-        value: .onrender.com
+        value: "False"
