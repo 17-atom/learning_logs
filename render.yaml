@@ -9,9 +9,9 @@ services:
     plan: free
     name: learninglogs
     runtime: python
+    rootDir: learning_logs
     buildCommand: './build.sh'
     startCommand: gunicorn learning_logs.wsgi:application
-    rootDir: learning_logs
     envVars:
       - key: DATABASE_URL
         fromDatabase:
